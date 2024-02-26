@@ -1,0 +1,83 @@
+
+LLMOps
+
+	MLOps = ML development + ML Operations
+
+	MLOps flow:
+
+		Data Ingestion -> Data Validation -> Data Transformation -> Model -> Model Analysis -> Serving -> Logging
+
+	LLMOps = MLOps for LLMs
+
+		Focus on LLM development and managing the model in production
+
+		Involves the following:
+
+		- Experimentation on foundation models
+		- Prompt design and management
+		- Supervised tuning
+		- Monitoring
+		- Evaluate generative output
+
+High level example
+
+	User Input -> Pre processing -> Grouding (domain knowledge) -> Prepare prompt -> LLM (foundation model + fine-tuned) -> LLM response -> Post-processing & responsible AI -> Final output
+
+	The above architecture describes the generic LLM driven application. However, if you want to customize the underlying foundation model itself (i.e. fine tuning) then you need to undergo model customization
+
+	Model Customization includes: (iterative, i.e. in a loop)
+	- Data Prep
+
+		This is similar to regular data engineering
+
+	- Tuning
+
+		Once the data is ready, we need to keep running our model on our dataset and continue verifying its output. We will be building pipelines (using airflow and such) and fine-tuning our model
+
+	- Evaluate
+
+		<same as above>
+
+Deploying our LLM models
+
+	2 types:
+
+	1. Batch - if your LLM is batch-based, i.e., lets say you want to analyze sentiment of customer reviews, then you deploy your model (i.e. the weights and related artifacts) to production on a weekly basis
+
+	2. REST API - if your use case is real-time, i.e., the model is serving LIVE users, then you can deploy it using k8s (containers/docker)
+
+Model monitoring:
+
+	1. Metrics
+
+		How is the model performing (is it responding properly)
+
+	2. Safety
+
+		Toxicity, hallucination, prompt injection
+
+Beyond deployment:
+
+	1. Packaging (deployment and versioning for rollbacks)
+	2. Inference scalability (load test, controlled rollout)
+	3. Latency (think of smaller models, faster processors, deploy regionally)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
